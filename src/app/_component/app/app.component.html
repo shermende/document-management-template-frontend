@@ -1,17 +1,29 @@
-<!-- nav -->
-<!-- main app container -->
+<mat-toolbar color="primary">
+
+  <mat-toolbar-row>
+
+    <h1>Pet DMS</h1>
+
+    <span class="menu-spacer"></span>
+
+    <div>
+
+      <a mat-button [routerLink]="'/movement-type'"> Document types </a>
+
+      <a mat-button [routerLink]="'/movement-reason'"> Reasons </a>
+
+      <a mat-button [routerLink]="'/movement-point'"> Points </a>
+
+      <a mat-button [routerLink]="'/movement-create-map'"> Start map </a>
+
+      <a mat-button [routerLink]="'/movement-map'"> Map </a>
+
+    </div>
+
+  </mat-toolbar-row>
+
+</mat-toolbar>
 <div class="container">
   <router-outlet></router-outlet>
 </div>
 
-<!-- credits -->
-<div class="text-center mt-4">
-  <p>
-    <a href="https://jasonwatmore.com/post/2019/06/22/angular-8-jwt-authentication-example-tutorial" target="_top">Angular
-      8 - JWT Authentication Example & Tutorial</a>
-  </p>
-  <p>
-    <a href="http://jasonwatmore.com" target="_top">JasonWatmore.com</a>
-  </p>
-  <button (click)="logout()">Logout</button>
-</div>
