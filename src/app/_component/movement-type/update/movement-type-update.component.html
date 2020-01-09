@@ -4,7 +4,7 @@
       <mat-card-title>Create document type</mat-card-title>
     </mat-card-header>
 
-    <form [formGroup]="form" (ngSubmit)="onCreate()" novalidate>
+    <form [formGroup]="form" (ngSubmit)="onUpdate()" novalidate>
 
       <mat-card-content>
         <mat-form-field class="example-full-width">
@@ -18,7 +18,7 @@
       </mat-card-content>
 
       <mat-card-actions align="center">
-        <button mat-raised-button color="primary" [disabled]="!form.valid">Create</button>
+        <button mat-raised-button color="primary" [disabled]="!form.valid">Update</button>
         <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
       </mat-card-actions>
 

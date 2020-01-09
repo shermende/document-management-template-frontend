@@ -1,35 +1,38 @@
-import {Location} from '@angular/common';
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Location} from '@angular/common';
 import {MovementTypeService} from '../../../_service/movement/movement-type.service';
 
-
 @Component({
-  selector: 'app-movement-type',
-  templateUrl: './movement-type-create.component.html',
-  styleUrls: ['./movement-type-create.component.css']
+  selector: 'app-movement-type-update',
+  templateUrl: './movement-type-update.component.html',
+  styleUrls: ['./movement-type-update.component.css']
 })
-export class MovementTypeCreateComponent implements OnInit {
+export class MovementTypeUpdateComponent implements OnInit {
+
+  id: number;
   form: FormGroup;
   errors: any;
 
   constructor(
     private router: Router,
     private location: Location,
+    private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private movementTypeService: MovementTypeService
   ) {
   }
 
   ngOnInit() {
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.form = this.formBuilder.group({
       title: new FormControl('', [Validators.required]),
     });
   }
 
-  onCreate() {
-    this.movementTypeService.create(this.form.value)
+  onUpdate() {
+    this.movementTypeService.update(this.id, this.form.value)
       .subscribe(
         response => {
           this.router.navigate(['/movement-type']);

@@ -1,8 +1,11 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {MovementType} from '../../../_models/movement/movement-type';
+import {MatPaginator, MatSort} from '@angular/material';
 import {MovementTypeService} from '../../../_service/movement/movement-type.service';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {MovementTypeDataSource} from '../../../_datasource/movement-type-data-source';
+import {tap} from 'rxjs/operators';
+import {merge} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-movement-type-page',
@@ -10,13 +13,14 @@ import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
   styleUrls: ['./movement-type-page.component.css']
 })
 export class MovementTypePageComponent implements OnInit, AfterViewInit {
-  public readonly displayedColumns = ['id', 'title', 'view', 'update', 'delete'];
+  readonly displayedColumns = ['id', 'title', 'view', 'update', 'delete'];
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-  public dataSource = new MatTableDataSource<MovementType>();
+  public dataSource: MovementTypeDataSource;
   private filter: FormGroup;
 
   constructor(
+    private router: Router,
     private formBuilder: FormBuilder,
     private movementTypeService: MovementTypeService
   ) {
@@ -26,53 +30,29 @@ export class MovementTypePageComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.movementTypeService.page(0, 10, '')
-      .subscribe(
-        response => {
-          if (response._embedded === undefined) {
-            return;
-          }
-          this.dataSource.data = response._embedded.data as MovementType[];
-        },
-        error => {
-          console.log(error);
-        });
+    this.dataSource = new MovementTypeDataSource(this.movementTypeService);
+    this.dataSource.page();
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+    merge(this.sort.sortChange, this.paginator.page)
+      .pipe(tap(() => this.dataSource.page(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction)))
+      .subscribe();
   }
 
   onFilter() {
-    this.dataSource.data = [];
-    this.movementTypeService.page(0, 10, new URLSearchParams(this.filter.value).toString().replace('null', ''))
-      .subscribe(
-        response => {
-          if (response._embedded === undefined) {
-            return;
-          }
-          this.dataSource.data = response._embedded.data as MovementType[];
-        },
-        error => {
-          console.log(error);
-        });
+    this.dataSource.page(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction,
+      new URLSearchParams(this.filter.value).toString().replace('null', ''));
   }
 
   onReset() {
     this.filter.reset();
-    this.dataSource.data = [];
-    this.movementTypeService.page(0, 10, '')
-      .subscribe(
-        response => {
-          if (response._embedded === undefined) {
-            return;
-          }
-          this.dataSource.data = response._embedded.data as MovementType[];
-        },
-        error => {
-          console.log(error);
-        });
+    this.dataSource.page(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction);
   }
+
+  redirectToUpdate(id: number) {
+    this.router.navigate([`/movement-type/${id}/update`]);
+  }
+
 
 }
