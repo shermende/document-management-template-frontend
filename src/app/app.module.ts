@@ -9,12 +9,12 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {AuthInterceptor} from './_interceptor/auth-interceptor';
 import {RoutingModule} from './routing.module';
 import {MovementTypeModule} from './_component/movement-type/movement-type.module';
+import {MovementReasonModule} from './_component/movement-reason/movement-reason.module';
 
 import {AppComponent} from './_component/app/app.component';
 import {HomeComponent} from './_component/home/home.component';
 import {LoginComponent} from './_component/login/login.component';
 import {RegistrationComponent} from './_component/registration/registration.component';
-
 
 @NgModule({
   declarations: [
@@ -31,6 +31,7 @@ import {RegistrationComponent} from './_component/registration/registration.comp
     MaterialModule,
     RoutingModule,
     MovementTypeModule,
+    MovementReasonModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}

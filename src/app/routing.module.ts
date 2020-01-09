@@ -12,7 +12,11 @@ const routes: Routes = [
   {path: 'registration', component: RegistrationComponent}, // open
   {
     path: 'movement-type',
-    loadChildren: () => import(`./_component/movement-type/movement-type.module`).then(m => m.MovementTypeModule)
+    loadChildren: () => import('./_component/movement-type/movement-type.module').then(m => m.MovementTypeModule)
+  },
+  {
+    path: 'movement-reason',
+    loadChildren: () => import('./_component/movement-reason/movement-reason.module').then(m => m.MovementReasonModule)
   },
 
   // otherwise redirect to home
