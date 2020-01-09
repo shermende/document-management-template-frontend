@@ -15,4 +15,15 @@ body {
 
 mat-table {
   width: 100%;
+  display: inline-table !important;
 }
+
+mat-table th, td {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+.mat-sort-header-container {
+  justify-content: center;
+}
+
