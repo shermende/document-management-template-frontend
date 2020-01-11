@@ -1,20 +1,26 @@
 <section class="main-section">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>Create document type</mat-card-title>
+      <mat-card-title>Update reason</mat-card-title>
     </mat-card-header>
 
-    <form [formGroup]="form" (ngSubmit)="onCreate()" novalidate>
+    <form [formGroup]="form" (ngSubmit)="onUpdate()" novalidate>
 
       <mat-card-content>
         <mat-form-field class="example-full-width">
           <label>
             <input matInput type="text" placeholder="Title" formControlName="title" id="title">
           </label>
-          <mat-hint align="end">Not more then 60 characters long.</mat-hint>
-          <mat-error *ngIf="hasError('title', 'required')">Name is required</mat-error>
+          <mat-hint align="start">Not more then 60 characters long.</mat-hint>
           <mat-error *ngIf="hasError('title', 'incorrect')">{{getError('title')}}</mat-error>
         </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-content>
+        <mat-select formControlName="type" placeholder="Type">
+          <mat-option *ngFor="let type of types" [value]="type.id">{{type.title}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="hasError('type', 'incorrect')">{{getError('type')}}</mat-error>
       </mat-card-content>
 
       <mat-card-actions align="center">

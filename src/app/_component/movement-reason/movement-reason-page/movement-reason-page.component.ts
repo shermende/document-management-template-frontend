@@ -1,29 +1,30 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort} from '@angular/material';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import {tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
-import {SupportDataSource} from '../../../_datasource/support-data-source';
-import {MovementType} from '../../../_models/movement/movement-type';
-import {MovementTypeService} from '../../../_service/movement/movement-type.service';
 import {merge} from 'rxjs';
+import {tap} from 'rxjs/operators';
+import {SupportDataSource} from '../../../_datasource/support-data-source';
+import {MovementReason} from '../../../_models/movement/movement-reason';
+import {MovementReasonService} from '../../../_service/movement/movement-reason.service';
 
 @Component({
-  selector: 'app-movement-type-page',
-  templateUrl: './movement-type-page.component.html',
-  styleUrls: ['./movement-type-page.component.css']
+  selector: 'app-movement-reason-page',
+  templateUrl: './movement-reason-page.component.html',
+  styleUrls: ['./movement-reason-page.component.css']
 })
-export class MovementTypePageComponent implements OnInit, AfterViewInit {
-  readonly displayedColumns = ['id', 'title', 'view', 'update', 'delete'];
+export class MovementReasonPageComponent implements OnInit, AfterViewInit {
+
+  readonly displayedColumns = ['id', 'title', 'type', 'view', 'update', 'delete'];
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-  public dataSource: SupportDataSource<MovementType>;
+  public dataSource: SupportDataSource<MovementReason>;
   private filter: FormGroup;
 
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private service: MovementTypeService
+    private service: MovementReasonService
   ) {
     this.filter = this.formBuilder.group({
       title: new FormControl(),
@@ -31,7 +32,7 @@ export class MovementTypePageComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.dataSource = new SupportDataSource<MovementType>(this.service);
+    this.dataSource = new SupportDataSource<MovementReason>(this.service);
     this.dataSource.page();
   }
 
@@ -52,8 +53,7 @@ export class MovementTypePageComponent implements OnInit, AfterViewInit {
   }
 
   redirectToUpdate(id: number) {
-    this.router.navigate([`/movement-type/${id}/update`]);
+    this.router.navigate([`/movement-reason/${id}/update`]);
   }
-
 
 }

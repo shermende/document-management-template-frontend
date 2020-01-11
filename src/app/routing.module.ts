@@ -5,15 +5,19 @@ import {AuthGuard} from './_guard/auth.guard';
 import {HomeComponent} from './_component/home/home.component';
 import {LoginComponent} from './_component/login/login.component';
 import {RegistrationComponent} from './_component/registration/registration.component';
-import {MovementTypePageComponent} from './_component/movement-type/page/movement-type-page.component';
-import {MovementTypeCreateComponent} from './_component/movement-type/create/movement-type-create.component';
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: 'registration', component: RegistrationComponent},
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
-  {path: 'movement-type', component: MovementTypePageComponent, canActivate: [AuthGuard]},
-  {path: 'movement-type/create', component: MovementTypeCreateComponent, canActivate: [AuthGuard]},
+  {path: 'login', component: LoginComponent}, // open
+  {path: 'registration', component: RegistrationComponent}, // open
+  {
+    path: 'movement-type',
+    loadChildren: () => import('./_component/movement-type/movement-type.module').then(m => m.MovementTypeModule)
+  },
+  {
+    path: 'movement-reason',
+    loadChildren: () => import('./_component/movement-reason/movement-reason.module').then(m => m.MovementReasonModule)
+  },
 
   // otherwise redirect to home
   {path: '**', redirectTo: ''}
