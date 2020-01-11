@@ -27,7 +27,6 @@ export class MovementTypeUpdateComponent extends SupportFormUpdate<MovementType>
     this.form = this.formBuilder.group({
       title: new FormControl('', [Validators.required]),
     });
-
     this.crudService.read(Number(this.route.snapshot.paramMap.get('id'))).subscribe(response => {
       this.form = this.formBuilder.group({
         title: new FormControl(response.title, [Validators.required]),
