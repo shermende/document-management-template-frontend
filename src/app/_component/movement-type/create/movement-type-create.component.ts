@@ -1,8 +1,10 @@
 import {Location} from '@angular/common';
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {MovementTypeService} from '../../../_service/movement/movement-type.service';
+import {MovementType} from '../../../_models/movement/movement-type';
+import {SupportFormCreate} from '../../support/support-form-create';
 
 
 @Component({
@@ -10,16 +12,15 @@ import {MovementTypeService} from '../../../_service/movement/movement-type.serv
   templateUrl: './movement-type-create.component.html',
   styleUrls: ['./movement-type-create.component.css']
 })
-export class MovementTypeCreateComponent implements OnInit {
-  form: FormGroup;
-  errors: any;
+export class MovementTypeCreateComponent extends SupportFormCreate<MovementType> implements OnInit {
 
   constructor(
-    private router: Router,
-    private location: Location,
-    private formBuilder: FormBuilder,
-    private movementTypeService: MovementTypeService
+    protected router: Router,
+    protected location: Location,
+    protected formBuilder: FormBuilder,
+    protected crudService: MovementTypeService
   ) {
+    super(location, crudService);
   }
 
   ngOnInit() {
@@ -28,35 +29,8 @@ export class MovementTypeCreateComponent implements OnInit {
     });
   }
 
-  onCreate() {
-    this.movementTypeService.create(this.form.value)
-      .subscribe(
-        response => {
-          this.router.navigate(['/movement-type']);
-        },
-        error => {
-          if (error.error.errors !== undefined) {
-            this.errors = error.error.errors
-              .filter(e => e.field !== undefined)
-              .filter(e => this.form.contains(e.field))
-              .map(e => {
-                this.form.controls[e.field].setErrors({incorrect: true});
-                return e;
-              });
-          }
-        });
-  }
-
-  onCancel() {
-    this.location.back();
-  }
-
-  getError(field: string): string {
-    return this.errors.filter(e => e.field !== undefined).filter(e => e.field === field).map(e => e.defaultMessage).join();
-  }
-
-  hasError = (controlName: string, errorName: string) => {
-    return this.form.controls[controlName].hasError(errorName);
+  protected handleOk(response) {
+    this.router.navigate(['/movement-type']);
   }
 
 }

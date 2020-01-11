@@ -4,7 +4,8 @@ import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {merge} from 'rxjs';
 import {tap} from 'rxjs/operators';
-import {MovementReasonDataSource} from '../../../_datasource/movement-reason-data-source';
+import {SupportDataSource} from '../../../_datasource/support-data-source';
+import {MovementReason} from '../../../_models/movement/movement-reason';
 import {MovementReasonService} from '../../../_service/movement/movement-reason.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class MovementReasonPageComponent implements OnInit, AfterViewInit {
   readonly displayedColumns = ['id', 'title', 'type', 'view', 'update', 'delete'];
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-  public dataSource: MovementReasonDataSource;
+  public dataSource: SupportDataSource<MovementReason>;
   private filter: FormGroup;
 
   constructor(
@@ -31,7 +32,7 @@ export class MovementReasonPageComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.dataSource = new MovementReasonDataSource(this.service);
+    this.dataSource = new SupportDataSource<MovementReason>(this.service);
     this.dataSource.page();
   }
 

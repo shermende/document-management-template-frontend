@@ -7,7 +7,6 @@ export class SupportDataSource<M> implements DataSource<M> {
   private movementTypesSubject = new BehaviorSubject<M[]>([]);
   private total: number;
 
-
   constructor(
     private service: SupportCrudService<M>
   ) {
@@ -33,7 +32,7 @@ export class SupportDataSource<M> implements DataSource<M> {
           this.movementTypesSubject.next(response._embedded.data);
         },
         error => {
-          console.log(error);
+          alert(error);
         });
   }
 

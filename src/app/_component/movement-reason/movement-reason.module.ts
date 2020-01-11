@@ -6,11 +6,13 @@ import {MovementReasonPageComponent} from './movement-reason-page/movement-reaso
 import {MaterialModule} from '../../material.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import { MovementReasonCreateComponent } from './movement-reason-create/movement-reason-create.component';
+import { MovementReasonUpdateComponent } from './movement-reason-update/movement-reason-update.component';
 
 @NgModule({
   declarations: [
     MovementReasonPageComponent,
-    MovementReasonCreateComponent
+    MovementReasonCreateComponent,
+    MovementReasonUpdateComponent
   ],
   imports: [
     CommonModule,
