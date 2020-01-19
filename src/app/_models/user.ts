@@ -1,4 +1,3 @@
 export class User {
-  username: string;
-  token: string;
+  access_token: string;
 }

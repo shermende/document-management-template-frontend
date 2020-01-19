@@ -1,29 +1,7 @@
-<mat-toolbar color="primary">
-
-  <mat-toolbar-row>
-
-    <h1>Pet DMS</h1>
-
-    <span class="menu-spacer"></span>
-
-    <div>
-
-      <a mat-button [routerLink]="'/movement-type'"> Document types </a>
-
-      <a mat-button [routerLink]="'/movement-reason'"> Reasons </a>
-
-      <a mat-button [routerLink]="'/movement-point'"> Points </a>
-
-      <a mat-button [routerLink]="'/movement-create-map'"> Start map </a>
-
-      <a mat-button [routerLink]="'/movement-map'"> Map </a>
-
-    </div>
-
-  </mat-toolbar-row>
-
-</mat-toolbar>
 <div class="container">
-  <router-outlet></router-outlet>
-</div>
 
+  <app-header></app-header>
+
+  <router-outlet></router-outlet>
+
+</div>

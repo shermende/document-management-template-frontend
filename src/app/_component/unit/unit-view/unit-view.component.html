@@ -1,0 +1,34 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      "{{unit.point.title}}"
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    {{unit.point.description}}
+  </mat-card-content>
+</mat-card>
+<br><br>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      "{{unit.reason.title}}"
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    {{unit.reason.description}}
+  </mat-card-content>
+</mat-card>
+<br><br>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Доступные действия</mat-card-title>
+  </mat-card-header>
+  <form [formGroup]="form" novalidate>
+    <mat-card-content>
+      <mat-select formControlName="reason" placeholder="Выбрать действие" (selectionChange)="onMove()">
+        <mat-option *ngFor="let reason of reasons" [value]="reason.id">{{reason.title}}</mat-option>
+      </mat-select>
+    </mat-card-content>
+  </form>
+</mat-card>

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {User} from '../_models/user';
 import {map} from 'rxjs/operators';
 import {SystemService} from './system.service';
@@ -22,8 +22,18 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string): Observable<any> {
-    return this.http.post<any>(`${this.url}/auth/login`, {username, password})
+    var formData: any = new FormData();
+    formData.append('username', username);
+    formData.append('password', password);
+    formData.append('grant_type', 'password');
+
+    let headers = new HttpHeaders({
+      'Authorization': 'Basic Y2xpZW50SWQ6Y2xpZW50U2VjcmV0'
+    });
+
+    return this.http.post<any>(`${this.url}/oauth/token`, formData, {headers: headers})
       .pipe(map(response => {
+        console.log(response);
         localStorage.setItem('currentUser', JSON.stringify(response));
         this.currentUser.next(response);
         return response;

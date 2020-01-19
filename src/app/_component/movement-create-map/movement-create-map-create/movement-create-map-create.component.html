@@ -1,0 +1,42 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Create point</mat-card-title>
+  </mat-card-header>
+
+  <form [formGroup]="form" (ngSubmit)="onCreate()" novalidate>
+
+    <mat-card-content>
+      <mat-select formControlName="board" placeholder="Board">
+        <mat-option *ngFor="let board of boards" [value]="board.id">{{board.title}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="hasError('board', 'incorrect')">{{getError('board')}}</mat-error>
+    </mat-card-content>
+    <br>
+    <mat-card-content>
+      <mat-select formControlName="type" placeholder="Type">
+        <mat-option *ngFor="let type of types" [value]="type.id">{{type.title}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="hasError('type', 'incorrect')">{{getError('type')}}</mat-error>
+    </mat-card-content>
+    <br>
+    <mat-card-content>
+      <mat-select formControlName="reason" placeholder="Reason">
+        <mat-option *ngFor="let reason of reasons" [value]="reason.id">{{reason.title}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="hasError('reason', 'incorrect')">{{getError('reason')}}</mat-error>
+    </mat-card-content>
+    <br>
+    <mat-card-content>
+      <mat-select formControlName="point" placeholder="Point">
+        <mat-option *ngFor="let point of points" [value]="point.id">{{point.title}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="hasError('point', 'incorrect')">{{getError('point')}}</mat-error>
+    </mat-card-content>
+
+    <mat-card-actions align="center">
+      <button mat-raised-button color="primary" [disabled]="!form.valid">Create</button>
+      <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+    </mat-card-actions>
+
+  </form>
+</mat-card>

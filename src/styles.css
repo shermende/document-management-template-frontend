@@ -6,16 +6,9 @@ html, body {
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-.container {
-  padding: 40px;
-}
-
-.main-section {
-  display: flex;
-  justify-content: center;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: #E4F0FF;
 }
 
 mat-table {
@@ -32,3 +25,28 @@ mat-table th, td {
   justify-content: center;
 }
 
+mat-card {
+  padding: 30px 40px !important;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+app-header {
+  color: white;
+  font-size: 14px;
+  grid-area: header;
+  text-align: center;
+  background-color: #FA7D44;
+  margin-bottom: 50px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 220px 1fr 220px;
+  grid-template-rows: auto 1fr auto;
+  grid-gap: 12px;
+  grid-template-areas: "header header header" "nav content side" "footer footer footer";
+  height: 100vh;
+}

@@ -4,12 +4,12 @@ import {SystemService} from './system.service';
 
 export class SupportCrudService<R> {
 
-  private readonly url: string;
-  private readonly uri: string;
+  protected readonly url: string;
+  protected readonly uri: string;
 
   constructor(
-    private http: HttpClient,
-    private systemService: SystemService,
+    protected http: HttpClient,
+    protected systemService: SystemService,
     uri: string
   ) {
     this.url = systemService.url();

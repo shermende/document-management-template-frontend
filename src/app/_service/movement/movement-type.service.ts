@@ -16,4 +16,8 @@ export class MovementTypeService extends SupportCrudService<MovementType> {
     super(http, systemService, 'movement-type');
   }
 
+  findAllOnCreate(boardId: number, page: number = 0, size: number = 999, sort: string = 'id', direction: string = 'desc') {
+    return this.page(page, size, sort, direction, `qCreateMapBoardId=${boardId}`);
+  }
+
 }

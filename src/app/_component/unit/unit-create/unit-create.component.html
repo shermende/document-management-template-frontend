@@ -1,0 +1,46 @@
+<mat-card>
+  <h1 i18n="main header|Friendly welcoming message">Welcome!</h1>
+
+  <mat-card-header>
+    <mat-card-title>Создать сценарии</mat-card-title>
+  </mat-card-header>
+
+  <form [formGroup]="form" (ngSubmit)="onCreate()" novalidate>
+
+    <mat-form-field class="example-full-width">
+      <label>
+        <input matInput type="text" placeholder="Очаровательный учёный" formControlName="title" id="title">
+      </label>
+      <mat-hint align="end">Введите имя персонажа</mat-hint>
+      <mat-error *ngIf="hasError('title', 'incorrect')">{{getError('title')}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select formControlName="board" placeholder="Scenario" (selectionChange)="onBoardChange()">
+        <mat-option *ngFor="let board of boards" [value]="board.id">{{board.title}}</mat-option>
+      </mat-select>
+      <mat-hint align="end">Выбор сценария</mat-hint>
+      <mat-error *ngIf="hasError('board', 'incorrect')">{{getError('board')}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select formControlName="type" placeholder="Character type" (selectionChange)="onTypeChange()">
+        <mat-option *ngFor="let type of types" [value]="type.id">{{type.title}}</mat-option>
+      </mat-select>
+      <mat-hint align="end">Выбор типа персонажа</mat-hint>
+      <mat-error *ngIf="hasError('type', 'incorrect')">{{getError('type')}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select formControlName="reason" placeholder="First move">
+        <mat-option *ngFor="let reason of reasons" [value]="reason.id">{{reason.title}}</mat-option>
+      </mat-select>
+      <mat-hint align="end">Выбор первого действия</mat-hint>
+      <mat-error *ngIf="hasError('reason', 'incorrect')">{{getError('reason')}}</mat-error>
+    </mat-form-field>
+
+    <mat-card-actions align="center">
+      <button mat-raised-button color="primary" [disabled]="!form.valid">Create</button>
+      <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+    </mat-card-actions>
+
+  </form>
+
+</mat-card>

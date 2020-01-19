@@ -15,7 +15,7 @@ import {MovementReasonService} from '../../../_service/movement/movement-reason.
 })
 export class MovementReasonPageComponent implements OnInit, AfterViewInit {
 
-  readonly displayedColumns = ['id', 'title', 'type', 'view', 'update', 'delete'];
+  readonly displayedColumns = ['id', 'title', 'view', 'update', 'delete'];
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   public dataSource: SupportDataSource<MovementReason>;

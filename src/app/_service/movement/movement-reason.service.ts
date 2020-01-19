@@ -10,10 +10,18 @@ import {SystemService} from '../system.service';
 export class MovementReasonService extends SupportCrudService<MovementReason> {
 
   constructor(
-    http: HttpClient,
-    systemService: SystemService
+    protected http: HttpClient,
+    protected systemService: SystemService
   ) {
     super(http, systemService, 'movement-reason');
+  }
+
+  findAllOnCreate(boardId: number, typeId: number, page: number = 0, size: number = 999, sort: string = 'id', direction: string = 'desc') {
+    return this.page(page, size, sort, direction, `qCreateMapBoardId=${boardId}&qCreateMapTypeId=${typeId}`);
+  }
+
+  findAllOnMove(boardId: number, typeId: number, pointId: number, page: number = 0, size: number = 999, sort: string = 'id', direction: string = 'desc') {
+    return this.page(page, size, sort, direction, `qMapBoardId=${boardId}&qMapTypeId=${typeId}&qMapSourcePointId=${pointId}`);
   }
 
 }
