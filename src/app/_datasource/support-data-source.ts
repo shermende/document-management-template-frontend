@@ -4,11 +4,11 @@ import {SupportCrudService} from '../_service/support-crud-service';
 
 export class SupportDataSource<M> implements DataSource<M> {
 
-  private movementTypesSubject = new BehaviorSubject<M[]>([]);
-  private total: number;
+  protected movementTypesSubject = new BehaviorSubject<M[]>([]);
+  protected total: number;
 
   constructor(
-    private service: SupportCrudService<M>
+    protected service: SupportCrudService<M>
   ) {
   }
 
@@ -32,7 +32,7 @@ export class SupportDataSource<M> implements DataSource<M> {
           this.movementTypesSubject.next(response._embedded.data);
         },
         error => {
-          alert(error);
+          console.log(error);
         });
   }
 

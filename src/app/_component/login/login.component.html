@@ -1,22 +1,32 @@
-<div class="col-md-6 offset-md-3 mt-5">
-  <div class="card">
-    <h4 class="card-header">Angular 8 JWT Login Example</h4>
-    <div class="card-body">
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input id="username" type="text" formControlName="username" class="form-control"/>
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input id="password" type="password" formControlName="password" class="form-control"/>
-        </div>
-        <button class="btn btn-primary">
-          login
-        </button>
-        <a [routerLink]="redirectToRegistration()">Registration</a>
-        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
-      </form>
-    </div>
-  </div>
-</div>
+<mat-card>
+
+  <mat-card-header>
+    <mat-card-title>Вход</mat-card-title>
+  </mat-card-header>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+    <mat-form-field class="example-full-width">
+      <label>
+        <input matInput type="text" placeholder="Имя пользователя" formControlName="username">
+      </label>
+      <mat-hint align="end">Имя пользователя</mat-hint>
+      <mat-error *ngIf="hasError('username', 'incorrect')">{{getError('username')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <label>
+        <input matInput type="password" placeholder="Пароль" formControlName="password">
+      </label>
+      <mat-hint align="end">Пароль</mat-hint>
+      <mat-error *ngIf="hasError('password', 'incorrect')">{{getError('password')}}</mat-error>
+    </mat-form-field>
+
+    <mat-card-actions align="center">
+      <button mat-raised-button color="primary" [disabled]="!form.valid">Вход</button>
+      <button type="button" mat-raised-button color="accent" [routerLink]="'/registration'">Регистрация</button>
+    </mat-card-actions>
+
+  </form>
+
+</mat-card>

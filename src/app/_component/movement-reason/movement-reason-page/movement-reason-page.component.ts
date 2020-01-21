@@ -19,7 +19,7 @@ export class MovementReasonPageComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   public dataSource: SupportDataSource<MovementReason>;
-  private filter: FormGroup;
+  filter: FormGroup;
 
   constructor(
     private router: Router,

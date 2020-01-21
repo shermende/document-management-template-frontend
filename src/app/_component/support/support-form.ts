@@ -3,8 +3,8 @@ import {Location} from '@angular/common';
 
 export class SupportForm {
 
-  protected form: FormGroup;
-  protected errors: any;
+  form: FormGroup;
+  errors: any;
 
   constructor(
     protected location: Location,
@@ -16,7 +16,7 @@ export class SupportForm {
   }
 
   getError(field: string): string {
-    return this.errors.filter(e => e.field !== undefined).filter(e => e.field === field).map(e => e.defaultMessage).join();
+    return this.errors.filter(e => e.field !== undefined).filter(e => e.field === field).map(e => e.message).join();
   }
 
   hasError = (controlName: string, errorName: string) => {

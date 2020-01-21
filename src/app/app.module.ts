@@ -13,18 +13,27 @@ import {MovementReasonModule} from './_component/movement-reason/movement-reason
 import {MovementPointModule} from './_component/movement-point/movement-point.module';
 
 import {AppComponent} from './_component/app/app.component';
-import {HomeComponent} from './_component/home/home.component';
 import {LoginComponent} from './_component/login/login.component';
 import {RegistrationComponent} from './_component/registration/registration.component';
 import {HeaderComponent} from './_component/layout/header/header.component';
+import {UnitModule} from './_component/unit/unit.module';
+import {ErrorInterceptor} from './_interceptor/error-interceptor';
+import {ErrorAccessDeniedComponent} from './_component/dialog/error/error-access-denied/error-access-denied.component';
+import {ErrorUnauthorizedComponent} from './_component/dialog/error/error-unauthorized/error-unauthorized.component';
+import {ErrorCommonComponent} from './_component/dialog/error/error-common/error-common.component';
+import {ErrorLoginComponent} from './_component/dialog/error/error-login/error-login.component';
+import {LocaleInterceptor} from './_interceptor/locale-interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    HeaderComponent,
     LoginComponent,
     RegistrationComponent,
-    HeaderComponent,
+    ErrorLoginComponent,
+    ErrorAccessDeniedComponent,
+    ErrorUnauthorizedComponent,
+    ErrorCommonComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,12 +43,24 @@ import {HeaderComponent} from './_component/layout/header/header.component';
     // NoopAnimationsModule,
     MaterialModule,
     RoutingModule,
+    UnitModule,
     MovementTypeModule,
     MovementReasonModule,
     MovementPointModule,
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LocaleInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+  ],
+  exports: [
+    HeaderComponent
+  ],
+  entryComponents: [
+    ErrorLoginComponent,
+    ErrorAccessDeniedComponent,
+    ErrorUnauthorizedComponent,
+    ErrorCommonComponent,
   ],
   bootstrap: [AppComponent]
 })

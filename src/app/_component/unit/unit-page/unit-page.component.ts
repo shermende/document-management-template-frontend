@@ -17,8 +17,8 @@ export class UnitPageComponent implements OnInit {
   readonly displayedColumns = ['id', 'title', 'board', 'reason', 'point', 'go'];
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-  public dataSource: SupportDataSource<Unit>;
-  private filter: FormGroup;
+  dataSource: SupportDataSource<Unit>;
+  filter: FormGroup;
 
   constructor(
     private router: Router,

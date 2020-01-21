@@ -1,25 +1,24 @@
 <mat-card>
+
   <mat-card-header>
-    <mat-card-title>Create document type</mat-card-title>
+    <mat-card-title>Создать сценарии</mat-card-title>
   </mat-card-header>
 
   <form [formGroup]="form" (ngSubmit)="onCreate()" novalidate>
 
-    <mat-card-content>
-      <mat-form-field class="example-full-width">
-        <label>
-          <input matInput type="text" placeholder="Title" formControlName="title" id="title">
-        </label>
-        <mat-hint align="end">Not more then 60 characters long.</mat-hint>
-        <mat-error *ngIf="hasError('title', 'required')">Name is required</mat-error>
-        <mat-error *ngIf="hasError('title', 'incorrect')">{{getError('title')}}</mat-error>
-      </mat-form-field>
-    </mat-card-content>
+    <mat-form-field class="example-full-width">
+      <label>
+        <input matInput type="text" placeholder="Название" formControlName="title" id="title">
+      </label>
+      <mat-hint align="end">Название</mat-hint>
+      <mat-error *ngIf="hasError('title', 'incorrect')">{{getError('title')}}</mat-error>
+    </mat-form-field>
 
     <mat-card-actions align="center">
-      <button mat-raised-button color="primary" [disabled]="!form.valid">Create</button>
-      <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+      <button mat-raised-button color="primary" [disabled]="!form.valid">Создать</button>
+      <button type="button" mat-raised-button color="warn" (click)="onCancel()">Отмена</button>
     </mat-card-actions>
 
   </form>
+
 </mat-card>

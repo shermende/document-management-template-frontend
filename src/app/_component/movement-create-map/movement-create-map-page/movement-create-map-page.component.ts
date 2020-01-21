@@ -18,8 +18,8 @@ export class MovementCreateMapPageComponent implements OnInit {
   readonly displayedColumns = ['board', 'type', 'reason', 'point', 'view', 'update', 'delete'];
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-  public dataSource: SupportDataSource<MovementCreateMap>;
-  private filter: FormGroup;
+  dataSource: SupportDataSource<MovementCreateMap>;
+  filter: FormGroup;
 
   constructor(
     private router: Router,

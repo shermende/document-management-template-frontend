@@ -8,16 +8,17 @@ import {UnitViewComponent} from './unit-view/unit-view.component';
 import {MaterialModule} from '../../material.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatGridListModule} from '@angular/material';
+import {UnitHistoryComponent} from './unit-history/unit-history.component';
 
 @NgModule({
-  declarations: [UnitPageComponent, UnitCreateComponent, UnitViewComponent],
-    imports: [
-        CommonModule,
-        MaterialModule,
-        ReactiveFormsModule,
-        UnitRoutingModule,
-        MatGridListModule
-    ]
+  declarations: [UnitPageComponent, UnitCreateComponent, UnitViewComponent, UnitHistoryComponent],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    UnitRoutingModule,
+    MatGridListModule,
+  ]
 })
 export class UnitModule {
 }

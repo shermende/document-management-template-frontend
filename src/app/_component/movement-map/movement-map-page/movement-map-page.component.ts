@@ -18,8 +18,8 @@ export class MovementMapPageComponent implements OnInit {
   readonly displayedColumns = ['board', 'type', 'sourcePoint', 'reason', 'targetPoint', 'view', 'update', 'delete'];
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-  public dataSource: SupportDataSource<MovementMap>;
-  private filter: FormGroup;
+  dataSource: SupportDataSource<MovementMap>;
+  filter: FormGroup;
 
   constructor(
     private router: Router,

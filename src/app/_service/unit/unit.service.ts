@@ -16,6 +16,10 @@ export class UnitService extends SupportCrudService<Unit> {
     super(http, systemService, 'unit');
   }
 
+  history(id: number, page: number = 0, size: number = 10, sort: string = 'id', direction: string = 'desc') {
+    return this.http.get<any>(`${this.url}/${this.uri}/${id}/history?page=${page}&size=${size}&sort=${sort},${direction}`);
+  }
+
   moveReasons(id: number) {
     return this.http.get<any>(`${this.url}/${this.uri}/${id}/move-reasons`);
   }

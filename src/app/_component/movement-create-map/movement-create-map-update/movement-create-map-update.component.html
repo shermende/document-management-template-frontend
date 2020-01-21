@@ -1,37 +1,46 @@
-<section class="main-section">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Create point</mat-card-title>
-    </mat-card-header>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Обновить стартовый маршрут</mat-card-title>
+  </mat-card-header>
 
-    <form [formGroup]="form" (ngSubmit)="onUpdate()" novalidate>
+  <form [formGroup]="form" (ngSubmit)="onUpdate()" novalidate>
 
-      <mat-card-content>
-        <mat-select formControlName="type" placeholder="Type">
-          <mat-option *ngFor="let type of types" [value]="type.id">{{type.title}}</mat-option>
-        </mat-select>
-        <mat-error *ngIf="hasError('type', 'incorrect')">{{getError('type')}}</mat-error>
-      </mat-card-content>
-      <br>
-      <mat-card-content>
-        <mat-select formControlName="reason" placeholder="Reason">
-          <mat-option *ngFor="let reason of reasons" [value]="reason.id">{{reason.title}}</mat-option>
-        </mat-select>
-        <mat-error *ngIf="hasError('reason', 'incorrect')">{{getError('reason')}}</mat-error>
-      </mat-card-content>
-      <br>
-      <mat-card-content>
-        <mat-select formControlName="point" placeholder="Point">
-          <mat-option *ngFor="let point of points" [value]="point.id">{{point.title}}</mat-option>
-        </mat-select>
-        <mat-error *ngIf="hasError('point', 'incorrect')">{{getError('point')}}</mat-error>
-      </mat-card-content>
+    <mat-form-field>
+      <mat-select formControlName="board" placeholder="Сценарий">
+        <mat-option *ngFor="let board of boards" [value]="board.id">{{board.title}}</mat-option>
+      </mat-select>
+      <mat-hint align="end">Сценарий</mat-hint>
+      <mat-error *ngIf="hasError('board', 'incorrect')">{{getError('board')}}</mat-error>
+    </mat-form-field>
 
-      <mat-card-actions align="center">
-        <button mat-raised-button color="primary" [disabled]="!form.valid">Update</button>
-        <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
-      </mat-card-actions>
+    <mat-form-field>
+      <mat-select formControlName="type" placeholder="Тип персонажа">
+        <mat-option *ngFor="let type of types" [value]="type.id">{{type.title}}</mat-option>
+      </mat-select>
+      <mat-hint align="end">Тип персонажа</mat-hint>
+      <mat-error *ngIf="hasError('type', 'incorrect')">{{getError('type')}}</mat-error>
+    </mat-form-field>
 
-    </form>
-  </mat-card>
-</section>
+    <mat-form-field>
+      <mat-select formControlName="reason" placeholder="Действие">
+        <mat-option *ngFor="let reason of reasons" [value]="reason.id">{{reason.title}}</mat-option>
+      </mat-select>
+      <mat-hint align="end">Действие</mat-hint>
+      <mat-error *ngIf="hasError('reason', 'incorrect')">{{getError('reason')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select formControlName="point" placeholder="Целевая точка">
+        <mat-option *ngFor="let point of points" [value]="point.id">{{point.title}}</mat-option>
+      </mat-select>
+      <mat-hint align="end">Целевая точка</mat-hint>
+      <mat-error *ngIf="hasError('point', 'incorrect')">{{getError('point')}}</mat-error>
+    </mat-form-field>
+
+    <mat-card-actions align="center">
+      <button mat-raised-button color="primary" [disabled]="!form.valid">Обновить</button>
+      <button type="button" mat-raised-button color="warn" (click)="onCancel()">Отмена</button>
+    </mat-card-actions>
+
+  </form>
+</mat-card>

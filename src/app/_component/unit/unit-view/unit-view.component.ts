@@ -13,11 +13,12 @@ import {MovementReasonService} from '../../../_service/movement/movement-reason.
 })
 export class UnitViewComponent implements OnInit {
 
-  protected form: FormGroup;
-  protected errors: any;
+  form: FormGroup;
+  errors: any;
   id: number;
   unit: Unit;
   reasons: MovementReason[];
+  unitForm: FormGroup;
 
   constructor(
     protected route: ActivatedRoute,
@@ -35,16 +36,33 @@ export class UnitViewComponent implements OnInit {
     });
     // load data
     this.unitService.read(this.id).subscribe(response => this.reload(response));
+    //
+    this.unitForm = this.formBuilder.group({
+      pointTitle: new FormControl(''),
+      pointDescription: new FormControl(''),
+      reasonTitle: new FormControl(''),
+      reasonDescription: new FormControl(''),
+    });
   }
 
   onMove() {
     this.unitService.move(this.id, this.form.value).subscribe(response => this.reload(response));
   }
 
+  history() {
+    this.router.navigate([`/unit/${this.id}/history`]);
+  }
+
   private reload(response) {
-    this.reasons = [];
     this.form.reset();
+    this.reasons = [];
     this.unit = response;
+    this.unitForm = this.formBuilder.group({
+      pointTitle: this.unit.point.title,
+      pointDescription: this.unit.point.description,
+      reasonTitle: this.unit.reason.title,
+      reasonDescription: this.unit.reason.description,
+    });
     this.reasonService.findAllOnMove(this.unit.board.id, this.unit.type.id, this.unit.point.id)
       .subscribe(response => {
         this.reasons = response._embedded.data;

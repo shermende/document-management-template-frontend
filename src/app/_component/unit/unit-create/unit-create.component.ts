@@ -23,6 +23,7 @@ export class UnitCreateComponent extends SupportFormCreate<Unit> implements OnIn
   reasons: MovementReason[];
   form: FormGroup;
   errors: any;
+  description: string;
 
   constructor(
     protected location: Location,
@@ -51,6 +52,8 @@ export class UnitCreateComponent extends SupportFormCreate<Unit> implements OnIn
   }
 
   onBoardChange() {
+    this.boardService.read(this.form.controls.board.value)
+      .subscribe(response => this.description = response.description);
     this.typeService.findAllOnCreate(this.form.controls.board.value)
       .subscribe(response => this.types = response._embedded.data);
   }

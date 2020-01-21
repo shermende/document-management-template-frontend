@@ -18,8 +18,8 @@ export class MovementBoardPageComponent implements OnInit {
   readonly displayedColumns = ['id', 'title', 'view', 'update', 'delete'];
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-  public dataSource: SupportDataSource<MovementType>;
-  private filter: FormGroup;
+  dataSource: SupportDataSource<MovementType>;
+  filter: FormGroup;
 
   constructor(
     private router: Router,

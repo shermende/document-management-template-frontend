@@ -18,8 +18,8 @@ export class MovementPointPageComponent implements OnInit {
   readonly displayedColumns = ['id', 'title', 'view', 'update', 'delete'];
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-  public dataSource: SupportDataSource<MovementPoint>;
-  private filter: FormGroup;
+  dataSource: SupportDataSource<MovementPoint>;
+  filter: FormGroup;
 
   constructor(
     private router: Router,
