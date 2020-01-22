@@ -1,0 +1,11 @@
+version: '2'
+services:
+  frontend:
+    image: trion/ng-cli:8.3.21
+    working_dir: /app
+    entrypoint: /bin/sh -c
+    command: ["npm update && ng serve --host 0.0.0.0"]
+    volumes:
+      - ../:/app
+    ports:
+      - 4200:4200
