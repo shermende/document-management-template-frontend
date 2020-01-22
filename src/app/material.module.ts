@@ -3,12 +3,14 @@ import {
   _MatMenuDirectivesModule,
   MatButtonModule,
   MatCardModule,
+  MatDialogModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
   MatListModule,
   MatMenuModule,
-  MatOptionModule, MatPaginatorModule,
+  MatOptionModule,
+  MatPaginatorModule,
   MatSelectModule,
   MatSidenavModule,
   MatSortModule,
@@ -18,6 +20,7 @@ import {
 
 @NgModule({
   imports: [
+    MatDialogModule,
     MatMenuModule,
     MatToolbarModule,
     MatTableModule,
@@ -35,6 +38,7 @@ import {
     _MatMenuDirectivesModule,
   ],
   exports: [
+    MatDialogModule,
     MatMenuModule,
     MatToolbarModule,
     MatTableModule,

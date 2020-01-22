@@ -1,0 +1,55 @@
+<mat-card>
+
+  <mat-card-header>
+    <mat-card-title>Создать сценарий</mat-card-title>
+  </mat-card-header>
+
+  <form [formGroup]="form" (ngSubmit)="onCreate()" novalidate>
+
+    <mat-form-field class="example-full-width">
+      <label>
+        <input matInput type="text" placeholder="Очаровательный учёный" formControlName="title" id="title">
+      </label>
+      <mat-hint align="end">Введите имя персонажа</mat-hint>
+      <mat-error *ngIf="hasError('title', 'incorrect')">{{getError('title')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select formControlName="board" placeholder="Выбор сценария" (selectionChange)="onBoardChange()">
+        <mat-option *ngFor="let board of boards" [value]="board.id">{{board.title}}</mat-option>
+      </mat-select>
+      <mat-hint align="end">Выбор сценария</mat-hint>
+      <mat-error *ngIf="hasError('board', 'incorrect')">{{getError('board')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <label>
+        <textarea matInput placeholder="Описание сценария" mat-autosize readonly>{{description}}</textarea>
+      </label>
+      <mat-hint align="end">Описание сценария</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select formControlName="type" placeholder="Сперва выберите сценарии" (selectionChange)="onTypeChange()">
+        <mat-option *ngFor="let type of types" [value]="type.id">{{type.title}}</mat-option>
+      </mat-select>
+      <mat-hint align="end">Выбор типа персонажа</mat-hint>
+      <mat-error *ngIf="hasError('type', 'incorrect')">{{getError('type')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select formControlName="reason" placeholder="Сперва выберите тип персонажа">
+        <mat-option *ngFor="let reason of reasons" [value]="reason.id">{{reason.title}}</mat-option>
+      </mat-select>
+      <mat-hint align="end">Выбор первого действия</mat-hint>
+      <mat-error *ngIf="hasError('reason', 'incorrect')">{{getError('reason')}}</mat-error>
+    </mat-form-field>
+
+    <mat-card-actions align="center">
+      <button mat-raised-button color="primary" [disabled]="!form.valid">Создать</button>
+      <button type="button" mat-raised-button color="warn" (click)="onCancel()">Отмена</button>
+    </mat-card-actions>
+
+  </form>
+
+</mat-card>

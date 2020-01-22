@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="1eaf722c330fc9bf1ab4255345fc2f6127e9556a" datatype="html">
+        <source>Welcome!</source>
+        <source>Welcome!1</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_component/unit/unit-create/unit-create.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <note priority="1" from="description">Friendly welcoming message</note>
+        <note priority="1" from="meaning">main header</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
