@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-
-import {AuthenticationService} from '../../_service/authentication.service';
-import {SupportForm} from '../support/support-form';
 import {Location} from '@angular/common';
+import {Router} from '@angular/router';
+import {FormBuilder, Validators} from '@angular/forms';
+import {AuthenticationService} from '../../../_service/authentication.service';
+import {SupportForm} from '../../support/support-form';
 
 @Component({
   selector: 'app-registration',
@@ -34,11 +33,10 @@ export class RegistrationComponent extends SupportForm implements OnInit {
     this.authenticationService.registration(this.form.controls.username.value, this.form.controls.password.value)
       .subscribe(
         response => {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/auth/login']);
         },
         error => {
           this.handleError(error);
         });
   }
-
 }

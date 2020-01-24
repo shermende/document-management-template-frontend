@@ -15,7 +15,7 @@ import {MovementMapService} from '../../../_service/movement/movement-map.servic
 })
 export class MovementMapPageComponent implements OnInit {
 
-  readonly displayedColumns = ['board', 'type', 'sourcePoint', 'reason', 'targetPoint', 'view', 'update', 'delete'];
+  readonly displayedColumns = ['board', 'type', 'sourcePoint', 'reason', 'targetPoint', 'update', 'delete'];
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   dataSource: SupportDataSource<MovementMap>;
@@ -52,7 +52,15 @@ export class MovementMapPageComponent implements OnInit {
     this.dataSource.page(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction);
   }
 
-  redirectToUpdate(id: number) {
+  update(id: any) {
     this.router.navigate([`/movement-map/${id}/update`]);
   }
+
+  delete(id: any) {
+    this.service.delete(id)
+      .subscribe(response => {
+        this.dataSource.page(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction);
+      });
+  }
+
 }

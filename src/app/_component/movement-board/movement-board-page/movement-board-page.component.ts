@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort} from '@angular/material';
 import {SupportDataSource} from '../../../_datasource/support-data-source';
 import {MovementType} from '../../../_models/movement/movement-type';
@@ -14,8 +14,8 @@ import {MovementBoard} from '../../../_models/movement/movement-board';
   templateUrl: './movement-board-page.component.html',
   styleUrls: ['./movement-board-page.component.css']
 })
-export class MovementBoardPageComponent implements OnInit {
-  readonly displayedColumns = ['id', 'title', 'view', 'update', 'delete'];
+export class MovementBoardPageComponent implements OnInit, AfterViewInit {
+  readonly displayedColumns = ['id', 'title', 'delete'];
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   dataSource: SupportDataSource<MovementType>;
@@ -52,7 +52,18 @@ export class MovementBoardPageComponent implements OnInit {
     this.dataSource.page(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction);
   }
 
-  redirectToUpdate(id: number) {
-    this.router.navigate([`/movement-board/${id}/update`]);
+  create() {
+    this.service.create(new MovementBoard())
+      .subscribe(response => {
+        this.dataSource.page(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction);
+      });
   }
+
+  delete(id: any) {
+    this.service.delete(id)
+      .subscribe(response => {
+        this.dataSource.page(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction);
+      });
+  }
+
 }

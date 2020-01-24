@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+
+  <a mat-button [routerLink]="'/unit'"> Сценарии </a>
+
+  <a mat-button [routerLink]="'/movement-board'"> Создать свой сценарий </a>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="filler"></span>
+
+  <a mat-button (click)="logout()"> Выйти </a>
+
+</mat-toolbar>

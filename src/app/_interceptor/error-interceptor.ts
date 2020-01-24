@@ -19,7 +19,12 @@ export class ErrorInterceptor implements HttpInterceptor {
         if (error instanceof HttpErrorResponse) {
           switch (error.status) {
             case 400:
-              return throwError(error);
+              console.log(error);
+              if (error.error.errors !== undefined) {
+                return throwError(error);
+              }
+              this.errorService.commonError(error.error);
+              break;
             case 401:
               this.authenticationService.logout();
               this.errorService.unauthorized({});

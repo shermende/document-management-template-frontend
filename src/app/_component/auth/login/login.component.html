@@ -23,8 +23,8 @@
     </mat-form-field>
 
     <mat-card-actions align="center">
-      <button mat-raised-button color="primary" [disabled]="!form.valid">Регистрация</button>
-      <button type="button" mat-raised-button color="warn" (click)="onCancel()">Вернуться</button>
+      <button mat-raised-button color="primary" [disabled]="!form.valid">Вход</button>
+      <button type="button" mat-raised-button color="accent" [routerLink]="'/auth/registration'">Регистрация</button>
     </mat-card-actions>
 
   </form>

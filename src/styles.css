@@ -50,3 +50,7 @@ app-header {
   grid-template-areas: "header header header" "nav content side" "footer footer footer";
   height: 100vh;
 }
+
+.filler {
+  flex: 1 1 auto;
+}

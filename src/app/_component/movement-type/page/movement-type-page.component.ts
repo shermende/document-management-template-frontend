@@ -14,7 +14,7 @@ import {merge} from 'rxjs';
   styleUrls: ['./movement-type-page.component.css']
 })
 export class MovementTypePageComponent implements OnInit, AfterViewInit {
-  readonly displayedColumns = ['id', 'title', 'view', 'update', 'delete'];
+  readonly displayedColumns = ['id', 'title', 'delete'];
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   dataSource: SupportDataSource<MovementType>;
@@ -51,9 +51,18 @@ export class MovementTypePageComponent implements OnInit, AfterViewInit {
     this.dataSource.page(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction);
   }
 
-  redirectToUpdate(id: number) {
-    this.router.navigate([`/movement-type/${id}/update`]);
+  create() {
+    this.service.create(new MovementType())
+      .subscribe(response => {
+        this.dataSource.page(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction);
+      });
   }
 
+  delete(id: any) {
+    this.service.delete(id)
+      .subscribe(response => {
+        this.dataSource.page(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction);
+      });
+  }
 
 }
