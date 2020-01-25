@@ -3,7 +3,7 @@ import {MatPaginator, MatSort} from '@angular/material';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
-import {SupportDataSource} from '../../../_datasource/support-data-source';
+import {SupportDataSource} from '../../../_datasource/support/support-data-source';
 import {MovementType} from '../../../_models/movement/movement-type';
 import {MovementTypeService} from '../../../_service/movement/movement-type.service';
 import {merge} from 'rxjs';
@@ -14,7 +14,7 @@ import {merge} from 'rxjs';
   styleUrls: ['./movement-type-page.component.css']
 })
 export class MovementTypePageComponent implements OnInit, AfterViewInit {
-  readonly displayedColumns = ['id', 'title', 'view', 'update', 'delete'];
+  readonly displayedColumns = ['id', 'title', 'delete'];
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   dataSource: SupportDataSource<MovementType>;
@@ -51,9 +51,18 @@ export class MovementTypePageComponent implements OnInit, AfterViewInit {
     this.dataSource.page(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction);
   }
 
-  redirectToUpdate(id: number) {
-    this.router.navigate([`/movement-type/${id}/update`]);
+  create() {
+    this.service.create(new MovementType())
+      .subscribe(response => {
+        this.dataSource.page(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction);
+      });
   }
 
+  delete(id: any) {
+    this.service.delete(id)
+      .subscribe(response => {
+        this.dataSource.page(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction);
+      });
+  }
 
 }

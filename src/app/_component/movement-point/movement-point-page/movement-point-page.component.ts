@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort} from '@angular/material';
-import {SupportDataSource} from '../../../_datasource/support-data-source';
+import {SupportDataSource} from '../../../_datasource/support/support-data-source';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {merge} from 'rxjs';
@@ -15,7 +15,7 @@ import {MovementPointService} from '../../../_service/movement/movement-point.se
 })
 export class MovementPointPageComponent implements OnInit {
 
-  readonly displayedColumns = ['id', 'title', 'view', 'update', 'delete'];
+  readonly displayedColumns = ['id', 'title', 'delete'];
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   dataSource: SupportDataSource<MovementPoint>;
@@ -52,8 +52,18 @@ export class MovementPointPageComponent implements OnInit {
     this.dataSource.page(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction);
   }
 
-  redirectToUpdate(id: number) {
-    this.router.navigate([`/movement-point/${id}/update`]);
+  create() {
+    this.service.create(new MovementPoint())
+      .subscribe(response => {
+        this.dataSource.page(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction);
+      });
+  }
+
+  delete(id: any) {
+    this.service.delete(id)
+      .subscribe(response => {
+        this.dataSource.page(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction);
+      });
   }
 
 }

@@ -1,7 +1,7 @@
 <mat-card>
 
   <mat-card-header>
-    <mat-card-title>Вход</mat-card-title>
+    <mat-card-title>Регистрация</mat-card-title>
   </mat-card-header>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
@@ -23,8 +23,8 @@
     </mat-form-field>
 
     <mat-card-actions align="center">
-      <button mat-raised-button color="primary" [disabled]="!form.valid">Вход</button>
-      <button type="button" mat-raised-button color="accent" [routerLink]="'/registration'">Регистрация</button>
+      <button mat-raised-button color="primary" [disabled]="!form.valid">Регистрация</button>
+      <button type="button" mat-raised-button color="warn" (click)="onCancel()">Вернуться</button>
     </mat-card-actions>
 
   </form>

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {SupportCrudService} from '../support-crud-service';
+import {SupportCrudService} from '../support/support-crud-service';
 import {MovementReason} from '../../_models/movement/movement-reason';
 import {HttpClient} from '@angular/common/http';
 import {SystemService} from '../system.service';

@@ -1,6 +1,6 @@
 import {CollectionViewer, DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {SupportCrudService} from '../_service/support-crud-service';
+import {SupportCrudService} from '../../_service/support/support-crud-service';
 
 export class SupportDataSource<M> implements DataSource<M> {
 

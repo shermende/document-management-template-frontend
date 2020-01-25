@@ -28,17 +28,6 @@ export class ErrorService {
     });
   }
 
-  accessDenied(data): void {
-    const dialogRef = this.dialog.open(ErrorAccessDeniedComponent, {
-      width: '300px',
-      data: data
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-    });
-  }
-
   unauthorized(data): void {
     const dialogRef = this.dialog.open(ErrorUnauthorizedComponent, {
       width: '300px',
@@ -48,6 +37,17 @@ export class ErrorService {
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       this.router.navigate(['/login']);
+    });
+  }
+
+  accessDenied(data): void {
+    const dialogRef = this.dialog.open(ErrorAccessDeniedComponent, {
+      width: '300px',
+      data: data
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
     });
   }
 

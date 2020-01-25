@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-
-import {AuthenticationService} from '../../_service/authentication.service';
-import {SupportForm} from '../support/support-form';
 import {Location} from '@angular/common';
-import {ErrorService} from '../../_service/error-service';
+import {Router} from '@angular/router';
+import {FormBuilder, Validators} from '@angular/forms';
+import {AuthenticationService} from '../../../_service/authentication.service';
+import {ErrorService} from '../../../_service/error-service';
+import {SupportForm} from '../../support/support-form';
 
 @Component({
   selector: 'app-login',
@@ -41,5 +40,4 @@ export class LoginComponent extends SupportForm implements OnInit {
           this.errorService.login({});
         });
   }
-
 }

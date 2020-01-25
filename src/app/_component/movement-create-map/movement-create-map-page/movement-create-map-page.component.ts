@@ -1,6 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort} from '@angular/material';
-import {SupportDataSource} from '../../../_datasource/support-data-source';
+import {SupportDataSource} from '../../../_datasource/support/support-data-source';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {merge} from 'rxjs';
@@ -13,9 +13,9 @@ import {MovementCreateMapService} from '../../../_service/movement/movement-crea
   templateUrl: './movement-create-map-page.component.html',
   styleUrls: ['./movement-create-map-page.component.css']
 })
-export class MovementCreateMapPageComponent implements OnInit {
+export class MovementCreateMapPageComponent implements OnInit, AfterViewInit {
 
-  readonly displayedColumns = ['board', 'type', 'reason', 'point', 'view', 'update', 'delete'];
+  readonly displayedColumns = ['board', 'type', 'reason', 'point', 'update', 'delete'];
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   dataSource: SupportDataSource<MovementCreateMap>;
@@ -52,8 +52,16 @@ export class MovementCreateMapPageComponent implements OnInit {
     this.dataSource.page(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction);
   }
 
-  redirectToUpdate(id: number) {
+  update(id: any) {
     this.router.navigate([`/movement-create-map/${id}/update`]);
   }
+
+  delete(id: any) {
+    this.service.delete(id)
+      .subscribe(response => {
+        this.dataSource.page(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction);
+      });
+  }
+
 
 }

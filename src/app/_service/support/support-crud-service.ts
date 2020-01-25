@@ -1,6 +1,6 @@
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {SystemService} from './system.service';
+import {SystemService} from '../system.service';
 
 export class SupportCrudService<R> {
 

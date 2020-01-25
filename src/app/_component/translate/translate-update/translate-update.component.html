@@ -1,0 +1,39 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Перевод</mat-card-title>
+  </mat-card-header>
+
+  <form [formGroup]="form" (ngSubmit)="onUpdate()" novalidate>
+
+    <mat-form-field class="example-full-width">
+      <label>
+        <input matInput type="text" placeholder="Локаль" formControlName="locale">
+      </label>
+      <mat-hint align="end">Локаль</mat-hint>
+      <mat-error *ngIf="hasError('locale', 'incorrect')">{{getError('locale')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <label>
+        <input matInput type="text" placeholder="Ключ" formControlName="key">
+      </label>
+      <mat-hint align="end">Ключ</mat-hint>
+      <mat-error *ngIf="hasError('key', 'incorrect')">{{getError('key')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <label>
+        <input matInput type="text" placeholder="Значение" formControlName="value">
+      </label>
+      <mat-hint align="end">Значение</mat-hint>
+      <mat-error *ngIf="hasError('value', 'incorrect')">{{getError('value')}}</mat-error>
+    </mat-form-field>
+
+
+    <mat-card-actions align="center">
+      <button mat-raised-button color="primary" [disabled]="!form.valid">Обновить</button>
+      <button type="button" mat-raised-button color="warn" (click)="onCancel()">Отмена</button>
+    </mat-card-actions>
+
+  </form>
+</mat-card>
