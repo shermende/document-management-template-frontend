@@ -1,4 +1,4 @@
-# Pet project "document management system as text-quest"
+# Pet document management system
 This repository frontend application only.
 
 Backend [here](https://github.com/shermende/dev.shermende.pet.dms-backend)
