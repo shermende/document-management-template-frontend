@@ -55,6 +55,11 @@ const routes: Routes = [
     component: MovementComponent,
     loadChildren: () => import('./_component/translate/translate.module').then(m => m.TranslateModule)
   },
+  {
+    path: 'stats',
+    component: MovementComponent,
+    loadChildren: () => import('./_component/stats/stats.module').then(m => m.StatsModule)
+  },
 
   // otherwise redirect to home
   {path: '**', redirectTo: '/unit'}

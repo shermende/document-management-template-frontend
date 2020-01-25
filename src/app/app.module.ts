@@ -31,6 +31,7 @@ import {MovementJumpMapModule} from './_component/movement-jump-map/movement-jum
 import {TranslateModule} from './_component/translate/translate.module';
 import {MovementHeaderComponent} from './_component/layout-parts/movement-header/movement-header.component';
 import {MovementComponent} from './_component/layout/movement/movement.component';
+import {StatsModule} from './_component/stats/stats.module';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import {MovementComponent} from './_component/layout/movement/movement.component
     MovementJumpMapModule,
     MovementMapModule,
     TranslateModule,
+    StatsModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

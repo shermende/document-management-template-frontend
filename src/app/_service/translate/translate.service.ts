@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {SystemService} from '../system.service';
-import {SupportCrudService} from '../support-crud-service';
+import {SupportCrudService} from '../support/support-crud-service';
 import {Translate} from '../../_models/translate';
 
 @Injectable({

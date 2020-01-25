@@ -13,4 +13,8 @@ export class SystemService {
     return environment.apiUrl;
   }
 
+  cassandraUrl(): string {
+    return environment.cassandraApiUrl;
+  }
+
 }

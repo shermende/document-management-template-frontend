@@ -1,0 +1,42 @@
+<mat-card>
+
+  <mat-card-content>
+    <mat-table matSort matSortActive="id" matSortDirection="desc" matSortDisableClear [dataSource]="dataSource">
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <ng-container matColumnDef="bucket">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>bucket</th>
+        <td mat-cell *matCellDef="let element"> {{element.bucket}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ts">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ts</th>
+        <td mat-cell *matCellDef="let element"> {{element.ts}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="path">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>path</th>
+        <td mat-cell *matCellDef="let element"> {{element.path}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="time">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>time</th>
+        <td mat-cell *matCellDef="let element"> {{element.time}} </td>
+      </ng-container>
+
+    </mat-table>
+
+  </mat-card-content>
+
+
+  <mat-card-actions align="center">
+    <button mat-button (show)="dataSource.hasPrev()" (click)="dataSource.prev()">
+      prev
+    </button>
+    <button mat-button (show)="dataSource.hasNext()" (click)="dataSource.next()">
+      next
+    </button>
+  </mat-card-actions>
+
+</mat-card>

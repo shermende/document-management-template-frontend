@@ -1,6 +1,6 @@
 import {Location} from '@angular/common';
 import {SupportForm} from './support-form';
-import {SupportCrudService} from '../../_service/support-crud-service';
+import {SupportCrudService} from '../../_service/support/support-crud-service';
 import {ActivatedRoute} from '@angular/router';
 
 export class SupportFormUpdate<R> extends SupportForm {

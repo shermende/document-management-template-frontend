@@ -1,6 +1,6 @@
 import {Location} from '@angular/common';
 import {SupportForm} from './support-form';
-import {SupportCrudService} from '../../_service/support-crud-service';
+import {SupportCrudService} from '../../_service/support/support-crud-service';
 
 export class SupportFormCreate<R> extends SupportForm {
 

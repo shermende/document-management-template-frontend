@@ -1,5 +1,5 @@
 import {UnitService} from '../_service/unit/unit.service';
-import {SupportDataSource} from './support-data-source';
+import {SupportDataSource} from './support/support-data-source';
 import {Unit} from '../_models/unit';
 
 export class UnitHistoryDataSource extends SupportDataSource<Unit> {

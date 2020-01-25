@@ -4,6 +4,7 @@ import {User} from '../_models/user';
 import {map} from 'rxjs/operators';
 import {SystemService} from './system.service';
 import {BehaviorSubject, Observable} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class AuthenticationService {
   private currentUser: BehaviorSubject<User>;
 
   constructor(
+    private route: Router,
     private http: HttpClient,
     private systemService: SystemService
   ) {
@@ -49,6 +51,7 @@ export class AuthenticationService {
     // remove user from local storage to log user out
     localStorage.removeItem(this.accessTokenHolder);
     this.currentUser.next(null);
+    this.route.navigate(['/auth/login']);
   }
 
   getCurrentUser(): User {
